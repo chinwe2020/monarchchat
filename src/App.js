@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import './';
+
+const express = require("express");
+const http = require("http");
+const socketIo = require("socket.io");
+
+const port = process.env.PORT || 4001;
+const index = require('./routes/index');
+
+const app = express();
+app.use(index);
+
+const server = http.createServer(app);
+const io = socketIo(server);
+
+const getApiAndEmit = "TODO";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>hello world</p>
     </div>
   );
 }
