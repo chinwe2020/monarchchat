@@ -1,22 +1,46 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
-const app = express();
-const port = process.env.PORT || 3001;
+const session = require('express-session');
+var passport = require('passport');
+var methodOverride = require('method-override');
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const profileRouter = require('./routes/profile');
 
 require('dotenv').config();
-require('./config/database');
 
+const app = express();
+const port = process.env.PORT || 3001;
 const cors = require('cors');
 
+require('./config/database');
+require('./config/passport');
 
 app.use(cors());
+app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'build')));
+app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
-app.use(express.static(path.join(__dirname, 'build')));
-
+app.use(express.urlencoded({ extended: true }));
+app.use(session({
+  secret: 'TechMonarchs!',
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/profile', profileRouter);
+app.use(function(req, res) {
+  res.status(404).send('Cant find that!');
+});
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
@@ -25,3 +49,4 @@ app.get('/*', function(req, res) {
 app.listen(port, function() {
   console.log(`Express app running on port ${port}`)
 });
+
