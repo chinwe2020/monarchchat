@@ -1,14 +1,10 @@
-import './App.css';
-import './App.js';
-
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import TextField from '@material-ui/core/TextField'
 import io from 'socket.io-client'
 import { Route, Switch } from 'react-router-dom';
 import NavBar from '../NavBar/NavBar'
-import ProfilePage from '../ProfilePage/ProfilePage'
-import HomePage from '../HomePage/HomePage'
+import { Route } from 'react-router-dom';
+
 
 
 const socket = io.connect('http://localhost:3001', {
@@ -18,7 +14,7 @@ const socket = io.connect('http://localhost:3001', {
     }
 })
 
-function App() {
+function Chat() {
   const [state, setState] = useState({ message: '', name: '' })
   const [chat, setChat] = useState([])
 
@@ -49,6 +45,7 @@ function App() {
       ))
   }
   
+  
   return (
     <>
       <header>
@@ -56,11 +53,6 @@ function App() {
           <NavBar />
         </nav>
       </header>
-
-      <Switch>
-        <Route exact path='/' render={() => <><HomePage /> </>} />
-        <Route exact path='/profile' render={() => <ProfilePage />} />
-      </Switch>
 
       <div className="card">
         <form onSubmit={onMessageSubmit}>
@@ -98,4 +90,6 @@ function App() {
     </>
   );
 }
-  export default App;
+
+
+export default Chat;

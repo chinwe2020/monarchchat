@@ -1,7 +1,9 @@
 var router = require('express').Router();
+const profilesCtrl = require('../controllers/profiles');
 
-router.get('/profile', function(req,res){
-    res.redirect('/');
-});
+
+router.get('/profile', profilesCtrl.index);
+router.get('/profile', profilesCtrl.create);
+
 
 module.exports = router;
