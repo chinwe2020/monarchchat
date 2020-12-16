@@ -3,8 +3,7 @@ const User = require('../models/user');
 module.exports = {
   index,
   addFeeling,
-  delFeeling,
-  addPost
+  delFeeling
 };
 
 function index(req, res, next) {
@@ -18,7 +17,7 @@ function index(req, res, next) {
   .sort(sortKey).exec(function(err, users) {
     if (err) return next(err);
     // Passing search values, name & sortKey, for use in the EJS
-    res.render('/', {
+    res.render('users/index', {
         users,
         name: req.query.name,
         sortKey
@@ -29,7 +28,7 @@ function index(req, res, next) {
 function addFeeling(req, res, next) {
     req.user.facts.push(req.body);
     req.user.save(function(err) {
-      res.redirect('/users');
+      res.redirect('/profile');
     });
   }
   
@@ -37,14 +36,7 @@ function addFeeling(req, res, next) {
     Student.findOne({'feelingss._id': req.params.id}, function(err, student) {
       user.facts.id(req.params.id).remove();
       user.save(function(err) {
-        res.redirect('/users');
+        res.redirect('/profile');
       });
-    });
-  }
-
-  function addPost(req, res, next) {
-    req.user.posts.push(req.body);
-    req.user.save(function(err) {
-      res.redirect('/users');
     });
   }

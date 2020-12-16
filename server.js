@@ -26,11 +26,9 @@ const session = require('express-session');
 var passport = require('passport');
 var methodOverride = require('method-override');
 
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const profileRouter = require('./routes/profile');
-
 
 require('dotenv').config();
 require('./config/database');
@@ -64,11 +62,9 @@ app.use(session({
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use('/', indexRouter);
-app.use('/', usersRouter);
-app.use('/', profileRouter);
-
+app.use('/users', usersRouter);
+app.use('/profile', profileRouter);
 app.use(function(req, res) {
   res.status(404).send('Cant find that!');
 });

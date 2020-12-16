@@ -7,8 +7,6 @@
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
-    "axios": "^0.21.0",
-    "bootstrap": "^5.0.0-beta1",
     "cookie-parser": "^1.4.5",
     "cra-template": "1.1.1",
     "dotenv": "^8.2.0",
@@ -23,7 +21,6 @@
     "passport-google-oauth": "^2.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-google-login": "^5.1.25",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "serve-favicon": "^2.5.0",
@@ -55,8 +52,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001",
-  "devDependencies": {
-    "webpack": "^5.10.3"
-  }
+  "proxy": "http://localhost:3001"
 }
