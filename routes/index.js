@@ -1,10 +1,6 @@
 var router = require('express').Router();
 const passport = require('passport');
 
-router.get('/', function(req,res){
-    res.redirect('/users');
-});
-
 router.get('/auth/google', passport.authenticate(
     'google',
     { scope: ['profile', 'email'] }
@@ -13,8 +9,8 @@ router.get('/auth/google', passport.authenticate(
   router.get('/oauth2callback', passport.authenticate(
     'google',
     {
-      successRedirect : '/users',
-      failureRedirect : '/users'
+      successRedirect : '/',
+      failureRedirect : '/'
     }
   ));
 

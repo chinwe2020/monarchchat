@@ -52,5 +52,7 @@
     ]
   },
   "proxy": "http://localhost:3001",
- 
+  "devDependencies": {
+    "webpack": "^5.10.3"
+  }
 }

@@ -1,9 +1,21 @@
 var router = require('express').Router();
-const profilesCtrl = require('../controllers/profiles');
+var postCtrl = require('../controllers/posts')
 
+router.get('/profile', function(req,res){
+    res.redirect('/');
+});
+router.get('/profile', postCtrl.index)
+router.post('/profile/posts', isLoggedIn, postCtrl.create)
+router.delete('/profile/posts/:id', isLoggedIn, postCtrl.delete)
+router.get('/profile/posts/:id/edit', isLoggedIn, postCtrl.edit)
+router.put('/profile/posts/:id', isLoggedIn, postCtrl.update)
 
-router.get('/profile', profilesCtrl.index);
-router.get('/profile', profilesCtrl.create);
+function isLoggedIn(req, res, next) {
+    if ( req.isAuthenticated() ) {
+      return next();
+    } else {
+      res.redirect('/auth/google');
+    }
+  }
 
-
-module.exports = router;
+  module.exports = router;

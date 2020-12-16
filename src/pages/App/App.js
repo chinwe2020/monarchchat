@@ -1,51 +1,46 @@
-import React, { Component }from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import GoogleLogin from 'react-google-login';
 import './App.css';
 import '../..';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar';
-import ProfilePage from '../../pages/ProfilePage/ProfilePage';
-// import Chat from '../../pages/ProfilePage/ProfilePage';
 
 
-class App extends Component {
 
-responseSuccessGoogle = (response) => {
-    console.log(response);
-    axios({
-      method: "POST",
-      url: "http://localhost:3000/",
-      data: {}
-    })
-}
+function App() {
 
-responseErrorGoogle = (response) => {
-
-}
-  render(){
-  return (
-    <div>
-      <header>
-      <NavBar />
-      </header>
-
-      <Route exact path="/profile" render={()=>
-          <ProfilePage />
-          }/>
-      
-  
-
-      <div>
-        <h1>Welcome to ChatturFly</h1>
-      </div>
-
-      <footer>
-        &nbsp;
-        <h5>App coded in <span>React</span> by <span>Tech Monarchs</span> </h5>
-      </footer>
-    </div>
-    );
+  const responseSuccessGoogle = (response) => {
+      console.log(response);
+      axios({
+        method: "POST",
+        url: "http://localhost:3000/",
+        data: {}
+      })
   }
+
+  const responseErrorGoogle = (response) => {
+    
+  }
+
+  return (
+    <div className="App">
+      <div className = "col-md=6 offset-md-3 text-center">
+        <h1>Login With Google</h1>
+
+        ReactDOM.render(
+              <GoogleLogin
+                  clientId="104089845067-92q1i9caoq0jp49p3iucgkdm61rbcfal.apps.googleusercontent.com"
+                  buttonText="Login With Google"
+                  onSuccess={responseSuccessGoogle}
+                  nFailure={responseErrorGoogle}
+                  cookiePolicy={'single_host_origin'}
+              />,
+        document.getElementById('googleButton')
+);
+
+      </div>
+    </div>
+  );
 }
 
 export default App;

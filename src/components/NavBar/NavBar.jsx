@@ -7,14 +7,14 @@ const NavBar = () => {
     let nav =
 
 
-    <div className="Nav">
+        <div className="Nav">
 
-    <NavLink className="link" exact to='/' >Home</NavLink>
+            <NavLink className="link" exact to='/' >Home</NavLink>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <NavLink className="link" exact to='/profile' >Profile</NavLink>
-      &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-      <NavLink className="link" exact to='/chat' >Chat</NavLink>
-    </div>
+
+        </div>
+
 
     return (
         <div className='NavBar'>
