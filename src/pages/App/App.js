@@ -1,11 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import GoogleLogin from 'react-google-login';
 import './App.css';
-import '../..';
-import axios from 'axios';
-
-
+import { Route, Switch } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar'
+import ProfilePage from '../ProfilePage/ProfilePage'
+import HomePage from '../HomePage/HomePage'
 
 function App() {
 
@@ -23,6 +21,18 @@ function App() {
   }
 
   return (
+    <>
+      <header>
+        <nav>
+          <NavBar />
+        </nav>
+      </header>
+
+      <Switch>
+        <Route exact path='/' render={() => <><HomePage /> </>} />
+        <Route exact path='/profile' render={() => <ProfilePage />} />
+      </Switch>
+    
     <div className="App">
       <div className = "col-md=6 offset-md-3 text-center">
         <h1>Login With Google</h1>
@@ -36,10 +46,16 @@ function App() {
                   cookiePolicy={'single_host_origin'}
               />,
         document.getElementById('googleButton')
-);
-
+                );
       </div>
-    </div>
+    </div> 
+
+    <footer>
+        &nbsp;
+        <h5>App coded in <span>React</span> by <span>Tech Monarchs</span> </h5>
+      </footer>
+    <>
+
   );
 }
 
